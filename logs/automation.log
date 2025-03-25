@@ -1,3 +1,22 @@
 03/24/25 07:00:41 PM: INFO: **********Test_001_signup***********
 03/24/25 07:00:41 PM: INFO: **********launching home page***********
 03/24/25 07:00:51 PM: INFO: title of homepage verified
+03/26/25 03:05:29 AM: INFO: **********Test_001_signup***********
+03/26/25 03:05:29 AM: INFO: **********launching home page***********
+03/26/25 03:05:36 AM: INFO: title of homepage verified
+03/26/25 03:06:01 AM: INFO: **launched  signup form**
+03/26/25 03:06:21 AM: INFO: ******Account created succefully*****
+03/26/25 03:17:25 AM: INFO: ********** Test_001 *************
+03/26/25 03:17:25 AM: INFO: ********** verifying home page title *************
+03/26/25 03:17:31 AM: INFO: homepage URL verified
+03/26/25 03:17:31 AM: INFO: ************* trying to login *****************
+03/26/25 03:20:34 AM: INFO: ********** Test_001 *************
+03/26/25 03:20:34 AM: INFO: ********** verifying home page title *************
+03/26/25 03:20:40 AM: INFO: homepage URL verified
+03/26/25 03:20:40 AM: INFO: ************* trying to login *****************
+03/26/25 03:35:34 AM: INFO: ********** Test_001 *************
+03/26/25 03:35:34 AM: INFO: ********** verifying home page title *************
+03/26/25 03:35:40 AM: INFO: homepage URL verified
+03/26/25 03:35:40 AM: INFO: ************* trying to login *****************
+03/26/25 03:35:46 AM: INFO: *****opening items page*********
+03/26/25 03:35:49 AM: INFO: loginpage URL verified
