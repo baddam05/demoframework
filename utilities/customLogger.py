@@ -15,7 +15,7 @@ class loggen:
 
         # Add handler only if it's not already added
         #if not logger.handlers:
-        file_handler = logging.FileHandler(log_file,mode='w')
+        file_handler = logging.FileHandler(log_file,mode='a')
         formatter = logging.Formatter('%(asctime)s: %(levelname)s: %(message)s',
                                       datefmt='%m/%d/%y %I:%M:%S %p')
         file_handler.setFormatter(formatter)
