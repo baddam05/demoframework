@@ -1,12 +1,8 @@
-import time
-#import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-
+from baseclass import BasePage
 from webdriver_manager.chrome import ChromeDriverManager
 service = Service(ChromeDriverManager().install())
 options = Options()
@@ -20,48 +16,33 @@ options.add_experimental_option("prefs", prefs)
 # Launch Chrome with options
 driver = webdriver.Chrome(options=options)
 
-
 class loginpage:
-    textbox_username_id="user-name"
-    textbox_password_id="password"
-    button_click_id="login-button"
-    menu_click_id="react-burger-menu-btn"
-    logout_click_id="logout_sidebar_link"
-
+    username_input=(By.ID,"user-name")
+    password_input=(By.ID,"password")
+    click_login_button=(By.ID,"login-button")
+    click_menu_button=(By.ID,"react-burger-menu-btn")
+    click_logout_button=(By.ID,"logout_sidebar_link")
+    #popup_close_button = (By.ID, "popup-close")  # Use correct locator
     def __init__(self,driver):
         self.driver=driver
+        self.base=BasePage(self.driver)
 
     def setusername(self,username):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, self.textbox_username_id))
-        )
-        self.driver.find_element(By.ID,self.textbox_username_id).clear()
-        self.driver.find_element(By.ID,self.textbox_username_id).send_keys(username)
+        self.base.send_keys(self.username_input,username)
 
     def setpassword(self,password):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, self.textbox_password_id))
-        )
-        self.driver.find_element(By.ID,self.textbox_password_id).clear()
-        self.driver.find_element(By.ID,self.textbox_password_id).send_keys(password)
+        self.base.send_keys(self.password_input,password)
 
     def clickloginbutton(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, self.button_click_id))
-        )
-        self.driver.find_element(By.ID,self.button_click_id).click()
+        self.base.click_element(self.click_login_button)
+
 
     def clickmenubutton(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, self.menu_click_id))
-        )
-        self.driver.find_element(By.ID, self.menu_click_id).click()
+        self.base.click_element(self.click_menu_button)
 
     def clicklogoutbutton(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.ID, self. logout_click_id))
-        )
-        self.driver.find_element(By.ID, self.logout_click_id).click()
+        self.base.click_element(self.click_logout_button)
+
 
 
 

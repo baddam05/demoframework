@@ -1,8 +1,8 @@
 import time
-
 from pageobjects.loginpage import loginpage
 from utilities.readproperties import readconfig
 from utilities.customLogger import loggen
+from baseclass import BasePage
 
 
 class Test_001:
@@ -15,7 +15,7 @@ class Test_001:
 
     def test_homepagetitle(self,setup):
         self.logger.info("********** Test_001 *************")
-        self.logger.info("********** verifying home page title *************")
+        self.logger.info("********** verifying home page  *************")
 
         self.driver=setup
         self.driver.get(self.baseurl)
@@ -25,9 +25,12 @@ class Test_001:
 
 
 
-        if act_url=="https://www.saucedemo.com/":
+        if act_url!="https://www.saucedemo.com/":
             self.logger.info("homepage URL verified")
-            assert True
+            print(f"{act_url}!=https://www.saucedemo.com/")
+            self.screenshot = BasePage(self.driver)
+            self.screenshot.save_screenshot()
+            assert False
 
 
         else:
@@ -56,6 +59,7 @@ class Test_001:
 
         if act_url=="https://www.saucedemo.com/inventory.html":
             self.logger.info("loginpage URL verified")
+
             assert True
 
         else:

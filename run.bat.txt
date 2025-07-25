@@ -1,4 +1,4 @@
 pytest -v -s -m "sanity" --html=./reports/sanity.html test_cases/ --browser chrome 
 rem pytest -v -s -m "sanity or regression" --html=./reports/sanreg.html test_cases/ --browser chrome
-rem pytest -v -s -m "sanity and regression" --html=./reports/sanorreg.html test_cases/ --browser chrome
+rem pytest -v -s -m "sanity and regression" --html=./reports/sanandreg.html test_cases/ --browser chrome
 rem pytest -v -s -m "regression" --html=./reports/regression.html test_cases/ --browser chrome

@@ -9,10 +9,6 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
 
 
-import pytest
-import base64
-import pytest_html
-
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -34,7 +30,7 @@ def pytest_runtest_makereport(item, call):
 
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def setup(request):
     browser = request.config.getoption("--browser")
     if browser == "chrome":

@@ -1,35 +1,28 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from baseclass import BasePage
 
 class itemsprice:
 
-    sort_click_xpath = "//select[@class='product_sort_container']"
-    lowtohigh_click_xpath = "//select[@class='product_sort_container']/option[3]"
-    itemsprice_get_xpath = "//div[@class='inventory_item_price']"
+    sort_click_xpath = (By.XPATH,"//select[@class='product_sort_container']")
+    lowtohigh_click_xpath = (By.XPATH,"//select[@class='product_sort_container']/option[3]")
+    itemsprice_get_xpath = (By.XPATH,"//div[@class='inventory_item_price']")
     scroll_down_len="window.scrollBy(0, 500)"
     scroll_up_len = "window.scrollBy(0, -500)"
 
     def __init__(self, driver):
         self.driver = driver
-
+        self.base=BasePage(self.driver)
     def clicksortmenu(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, self.sort_click_xpath))
-        )
-        self.driver.find_element(By.XPATH, self.sort_click_xpath).click()
+            self.base.click_element(self.sort_click_xpath)
 
     def select_low_to_high(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, self.lowtohigh_click_xpath))
-        )
-        self.driver.find_element(By.XPATH, self.lowtohigh_click_xpath).click()
+        self.base.click_element(self.lowtohigh_click_xpath)
 
     def get_all_item_prices(self):
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_all_elements_located((By.XPATH, self.itemsprice_get_xpath))
-        )
-        prices_elements = self.driver.find_elements(By.XPATH, self.itemsprice_get_xpath)
+
+        prices_elements = self.base.wait_for_elements_visible(self.itemsprice_get_xpath)
 
 
         lis_prices=[]
