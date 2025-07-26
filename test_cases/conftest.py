@@ -30,7 +30,7 @@ def pytest_runtest_makereport(item, call):
 
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class")
 def setup(request):
     browser = request.config.getoption("--browser")
     if browser == "chrome":
