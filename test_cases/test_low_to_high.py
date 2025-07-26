@@ -2,6 +2,7 @@ from utilities.readproperties import readconfig
 from pageobjects.loginpage import loginpage
 from pageobjects.itemspage import itemsprice
 from utilities.customLogger import loggen
+from selenium.common.exceptions import NoAlertPresentException
 import time
 
 
@@ -24,13 +25,20 @@ class Test_003_check_price_lowtohigh:
         self.lp.setpassword(self.password)
         self.lp.clickloginbutton()
         self.logger.info("********login successful************")
-        time.sleep(3)
+
+        try:
+            alert = self.driver.switch_to.alert
+            alert_text = alert.text
+            self.logger.info(f"Alert appeared: {alert_text}")
+            alert.accept()
+        except NoAlertPresentException:
+            self.logger.info("No alert appeared after login")
 
         self.ip=itemsprice(self.driver)
         self.ip.clicksortmenu()
         self.ip.select_low_to_high()
         self.ip.scroll_down()
-        time.sleep(5)
+
 
 
 

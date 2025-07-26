@@ -14,7 +14,7 @@ class Test_002_DDTlogin:
 
     def test_DDTlogin(self,setup):
         self.logger.info("********Test_002_DDTlogin********** ")
-        self.logger.info("*********verifyinf ddt login test********")
+        self.logger.info("*********verifying ddt login test********")
         self.driver=setup
         self.driver.get(self.baseurl)
         self.driver.maximize_window()
@@ -31,7 +31,7 @@ class Test_002_DDTlogin:
             self.lp.setusername(self.username)
             self.lp.setpassword(self.password)
             self.lp.clickloginbutton()
-            time.sleep(5)
+            time.sleep(3)
             act_url=self.driver.current_url
             exp_url="https://www.saucedemo.com/inventory.html"
             if act_url==exp_url:
@@ -46,10 +46,9 @@ class Test_002_DDTlogin:
                 elif self.exp=="fail":
                     self.logger.info("**login ddt failed")
                     self.lp.clickmenubutton()
-                    time.sleep(5)
+
                     self.lp.clicklogoutbutton()
                     lst_status.append("fail")
-
                     assert False, f"login  unsuccessful:{self.exp=='fail'}"
 
             elif act_url!=exp_url:
