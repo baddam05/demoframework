@@ -21,8 +21,8 @@ class Test_001:
         self.driver.get(self.baseurl)
         self.driver.maximize_window()
         time.sleep(5)
-        act_url=self.driver.current_url
 
+        act_url = self.driver.current_url
 
 
         if act_url!="https://www.saucedemo.com/":
