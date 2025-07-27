@@ -25,7 +25,6 @@ class Test_003_check_price_lowtohigh:
         self.lp.clickloginbutton()
         self.logger.info("********login successful************")
         time.sleep(3)
-
         self.ip=itemsprice(self.driver)
         self.ip.clicksortmenu()
         self.ip.select_low_to_high()
