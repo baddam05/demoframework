@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+
+    environment {
+        // Setup virtual environment folder if needed
+        VENV_DIR = '.venv'
+        REPORT_DIR = 'reports'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                echo 'Checking out code from GitHub...'
+                git branch: 'main', url: 'https://github.com/baddam05/demoframework.git'
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                echo 'Setting up Python and installing dependencies...'
+                sh '''
+                    python3 -m venv $VENV_DIR
+                    source $VENV_DIR/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                echo 'Running Pytest test cases...'
+                sh '''
+                    source $VENV_DIR/bin/activate
+                    mkdir -p $REPORT_DIR
+                    pytest tests/ --html=$REPORT_DIR/report.html --self-contained-html
+                '''
+            }
+        }
+
+        stage('Archive Test Report') {
+            steps {
+                echo 'Archiving test reports...'
+                archiveArtifacts artifacts: 'reports/report.html', allowEmptyArchive: true
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up workspace...'
+            deleteDir()
+        }
+
+        success {
+            echo 'Build completed successfully!'
+        }
+
+        failure {
+            echo 'Build failed. Check logs above.'
+        }
+    }
+}
